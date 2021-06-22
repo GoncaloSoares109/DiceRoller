@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
@@ -15,13 +16,13 @@ class MainActivity : AppCompatActivity() {
 
         rollButton.setOnClickListener {
 
-            rollButton.setText("Dice Rolled!")
+            rollButton.setText("Dice Rolled!!!")
             rollDice()
             rollDice2()
             //delay the change of button
             Handler().postDelayed({
                 //doSomethingHere()
-                rollButton.setText(" Roll Again")
+                rollButton.setText(" Roll Again!")
             }, 900)
 
 
@@ -39,8 +40,17 @@ class MainActivity : AppCompatActivity() {
         val dice = Dice(6)
         val diceRoll = dice.roll()
     // Update the screen with the dice roll
-        val DiceOne: TextView = findViewById(R.id.dice1)
-    DiceOne.text = diceRoll.toString()
+    val diceImage1: ImageView = findViewById(R.id.imageViewDice1)
+    val drawableResource = when (diceRoll) {
+        1 -> R.drawable.dice_1
+        2 -> R.drawable.dice_2
+        3 -> R.drawable.dice_3
+        4 -> R.drawable.dice_4
+        5 -> R.drawable.dice_5
+        else -> R.drawable.dice_6
+    }
+
+    diceImage1.setImageResource(drawableResource)
     }
 
     //Roll the second dice and update the screen with the result.
@@ -49,7 +59,16 @@ class MainActivity : AppCompatActivity() {
         val dice = Dice(6)
         val diceRoll = dice.roll()
         // Update the screen with the dice roll
-        val DiceTwo: TextView = findViewById(R.id.dice2)
-        DiceTwo.text = diceRoll.toString()
+        val diceImage2: ImageView = findViewById(R.id.imageViewDice2)
+        val drawableResource = when (diceRoll) {
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            else -> R.drawable.dice_6
+        }
+
+        diceImage2.setImageResource(drawableResource)
     }
 }
